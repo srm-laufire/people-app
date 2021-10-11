@@ -1,24 +1,54 @@
+/* eslint-disable no-magic-numbers */
 import { render, fireEvent } from '@testing-library/react';
-import { rndString } from '@laufire/utils/random';
+import { rndString, rndBetween } from '@laufire/utils/random';
 
-const testInput = ({ Component, type, context }) => {
-	const { state } = context;
+const conversions = {
+	name: (value) => value,
+	age: (value) => Number(value),
+};
+
+const mockStateValues = {
+	name: rndString(),
+	age: rndBetween(0, 9),
+};
+
+const mockEventValues = {
+	name: rndString(),
+	age: String(rndBetween(10, 19)),
+};
+
+const inputTypes = {
+	name: 'text',
+	age: 'number',
+};
+
+// eslint-disable-next-line max-lines-per-function
+const testInput = ({ Component, type }) => {
+	const context = {
+		state: {
+			[type]: mockStateValues[type],
+		},
+		actions: {
+			patchState: jest.fn(),
+		},
+	};
 
 	test('renders the component as expected', () => {
-		const result = render(Component(context)).getByRole(type);
+		const rendered = render(Component(context)).getByRole(type);
 
-		expect(result).toBeInTheDocument();
-		expect(result.value).toEqual(state[type]);
+		expect(rendered).toBeInTheDocument();
+		expect(rendered.type).toEqual(inputTypes[type]);
+		expect(rendered.value).toEqual(String(context.state[type]));
 	});
 
 	test('triggers the action patchState', () => {
-		const value = rndString();
-		const result = render(Component(context)).getByRole(type);
+		const value = mockEventValues[type];
+		const rendered = render(Component(context)).getByRole(type);
 
-		fireEvent.change(result, { target: { value }});
+		fireEvent.change(rendered, { target: { value }});
 
 		expect(context.actions.patchState)
-			.toHaveBeenCalledWith({ name: value });
+			.toHaveBeenCalledWith({ [type]: conversions[type](value) });
 	});
 };
 
