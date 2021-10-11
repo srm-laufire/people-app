@@ -1,5 +1,5 @@
-import { render, fireEvent } from '@testing-library/react';
 import { rndString } from '@laufire/utils/random';
+import testInput from '../test/helpers';
 import Name from './name';
 
 describe('Name', () => {
@@ -12,21 +12,11 @@ describe('Name', () => {
 			patchState: jest.fn(),
 		},
 	};
+	const component = {
+		Component: Name,
+		type: 'name',
+		context: context,
+	};
 
-	test('renders the component as expected', () => {
-		const component = render(Name(context)).getByRole('name');
-
-		expect(component).toBeInTheDocument();
-		expect(component.value).toEqual(name);
-	});
-
-	test('triggers the action patchState', () => {
-		const value = rndString();
-		const component = render(Name(context)).getByRole('name');
-
-		fireEvent.change(component, { target: { value }});
-
-		expect(context.actions.patchState)
-			.toHaveBeenCalledWith({ name: value });
-	});
+	testInput(component);
 });
