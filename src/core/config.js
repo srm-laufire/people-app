@@ -1,5 +1,3 @@
-const config = {
-	message: 'Ready to start.',
-};
+const config = {};
 
 export default config;
