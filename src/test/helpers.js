@@ -1,30 +1,40 @@
 /* eslint-disable no-magic-numbers */
 import { render, fireEvent } from '@testing-library/react';
-import { rndString, rndBetween } from '@laufire/utils/random';
+import { rndString, rndBetween, rndValue } from '@laufire/utils/random';
+import config from '../core/config';
+
+const { genderOptions } = config;
 
 const conversions = {
 	name: (value) => value,
 	age: (value) => Number(value),
+	gender: (value) => value,
 };
 
 const mockStateValues = {
 	name: rndString(),
 	age: rndBetween(0, 9),
+	gender: rndValue(genderOptions),
 };
 
 const mockEventValues = {
 	name: rndString(),
 	age: String(rndBetween(10, 19)),
+	gender: rndValue(genderOptions),
 };
 
 const inputTypes = {
 	name: 'text',
 	age: 'number',
+	gender: 'select-one',
 };
 
 // eslint-disable-next-line max-lines-per-function
 const testInput = ({ Component, type }) => {
 	const context = {
+		config: {
+			genderOptions,
+		},
 		state: {
 			[type]: mockStateValues[type],
 		},
