@@ -4,7 +4,7 @@ import AddButton from './addButton';
 describe('AddButton', () => {
 	const context = {
 		actions: {
-			addUser: jest.fn(),
+			addPeople: jest.fn(),
 		},
 	};
 
@@ -15,11 +15,11 @@ describe('AddButton', () => {
 		expect(component).toHaveTextContent('+');
 	});
 
-	test('triggers the action addUser', () => {
+	test('triggers the action addPeople', () => {
 		const component = render(AddButton(context)).getByRole('addButton');
 
 		fireEvent.click(component);
 
-		expect(context.actions.addUser).toHaveBeenCalledWith(context);
+		expect(context.actions.addPeople).toHaveBeenCalledWith(context);
 	});
 });

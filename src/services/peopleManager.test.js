@@ -1,10 +1,10 @@
-import UserManager from './userManager';
+import PeopleManager from './peopleManager';
 import * as random from '@laufire/utils/random';
 
-describe('UserManager', () => {
-	const { getUser, addUser } = UserManager;
+describe('PeopleManager', () => {
+	const { getPeople, addPeople } = PeopleManager;
 
-	test('getUser', () => {
+	test('getPeople', () => {
 		const id = Symbol('id');
 		const state = {
 			name: Symbol('name'),
@@ -23,29 +23,29 @@ describe('UserManager', () => {
 
 		jest.spyOn(random, 'rndString').mockReturnValue(id);
 
-		const result = getUser(context);
+		const result = getPeople(context);
 
 		expect(result).toEqual(expected);
 	});
 
-	test('addUser', () => {
-		const users = [Symbol('users')];
-		const user = Symbol('user');
+	test('addPeople', () => {
+		const peoples = [Symbol('peoples')];
+		const people = Symbol('people');
 
 		const context = {
 			state: {
-				users,
+				peoples,
 			},
 		};
 
 		const expected = [
-			...users,
-			user,
+			...peoples,
+			people,
 		];
 
-		jest.spyOn(UserManager, 'getUser').mockReturnValue(user);
+		jest.spyOn(PeopleManager, 'getPeople').mockReturnValue(people);
 
-		const result = addUser(context);
+		const result = addPeople(context);
 
 		expect(result).toEqual(expected);
 	});

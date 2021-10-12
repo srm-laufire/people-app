@@ -1,8 +1,8 @@
-import UserManager from '../services/userManager';
+import PeopleManager from '../services/peopleManager';
 import actions from './actions';
 
 describe('actions', () => {
-	const { patchState, addUser } = actions;
+	const { patchState, addPeople } = actions;
 
 	test('patchState', () => {
 		const data = Symbol('data');
@@ -12,14 +12,14 @@ describe('actions', () => {
 		expect(result).toEqual(data);
 	});
 
-	test('addUser', () => {
+	test('addPeople', () => {
 		const context = Symbol('context');
-		const users = Symbol('users');
+		const peoples = Symbol('peoples');
 
-		jest.spyOn(UserManager, 'addUser').mockReturnValue(users);
+		jest.spyOn(PeopleManager, 'addPeople').mockReturnValue(peoples);
 
-		const result = addUser(context);
+		const result = addPeople(context);
 
-		expect(result).toEqual({ users });
+		expect(result).toEqual({ peoples });
 	});
 });

@@ -1,10 +1,10 @@
-import UserManager from '../services/userManager';
+import PeopleManager from '../services/peopleManager';
 
 const actions = {
 	patchState: ({ data }) => data,
 
-	addUser: (context) => ({
-		users: UserManager.addUser(context),
+	addPeople: (context) => ({
+		peoples: PeopleManager.addPeople(context),
 	}),
 };
 
