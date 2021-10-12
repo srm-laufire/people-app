@@ -7,7 +7,7 @@ import * as Age from './components/age';
 import * as Gender from './components/gender';
 import * as MaritalStatus from './components/maritalStatus';
 import * as AddButton from './components/addButton';
-import * as Peoples from './components/peoples';
+import * as People from './components/people';
 import App from './App';
 
 describe('App', () => {
@@ -17,7 +17,7 @@ describe('App', () => {
 		gender: Gender,
 		addButton: AddButton,
 		maritalStatus: MaritalStatus,
-		peoples: Peoples,
+		people: People,
 	};
 
 	beforeEach(() => map(childComponents, (value, key) => {

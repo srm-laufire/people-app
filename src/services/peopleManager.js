@@ -11,7 +11,7 @@ const PeopleManager = {
 
 	addPeople: (context) =>
 		[
-			...context.state.peoples,
+			...context.state.people,
 			PeopleManager.getPeople(context),
 		],
 };

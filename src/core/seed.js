@@ -5,7 +5,7 @@ const seed = {
 	age: '',
 	gender: config.genderOptions[0],
 	maritalStatus: config.maritalStatusOptions[0],
-	peoples: [],
+	people: [],
 };
 
 export default seed;

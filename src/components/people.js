@@ -1,11 +1,7 @@
 import { React } from 'react';
+import Person from './person';
 
-const People = ({ id, name, age, gender, maritalStatus }) =>
-	<div key={ id } role="people" className="people-style">
-		<span role="name">{ name }</span>
-		<span role="age">{ age }</span>
-		<span role="gender">{ gender }</span>
-		<span role="maritalStatus">{ maritalStatus }</span>
-	</div>;
+const People = ({ state: { people }}) =>
+	<div role="people">{ people.map(Person) }</div>;
 
 export default People;

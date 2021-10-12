@@ -29,21 +29,21 @@ describe('PeopleManager', () => {
 	});
 
 	test('addPeople', () => {
-		const peoples = [Symbol('peoples')];
-		const people = Symbol('people');
+		const people = [Symbol('people')];
+		const person = Symbol('person');
 
 		const context = {
 			state: {
-				peoples,
+				people,
 			},
 		};
 
 		const expected = [
-			...peoples,
-			people,
+			...people,
+			person,
 		];
 
-		jest.spyOn(PeopleManager, 'getPeople').mockReturnValue(people);
+		jest.spyOn(PeopleManager, 'getPeople').mockReturnValue(person);
 
 		const result = addPeople(context);
 

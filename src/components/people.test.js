@@ -1,36 +1,28 @@
 import { render } from '@testing-library/react';
-import { rndString } from '@laufire/utils/random';
+import { React } from 'react';
 import People from './people';
-import { map } from '@laufire/utils/collection';
+import Person from './person';
 
 describe('People', () => {
-	const state = {
-		id: rndString(),
-		name: rndString(),
-		age: rndString(),
-		gender: rndString(),
-		maritalStatus: rndString(),
-	};
+	const people = [];
 	const context = {
-		state,
+		state: {
+			people,
+		},
 	};
 
 	test('renders the component as expected', () => {
-		const { getByRole } = render(People(context.state));
-
-		const component = getByRole('people');
+		const component = render(People(context)).getByRole('people');
 
 		expect(component).toBeInTheDocument();
-		expect(component).toHaveClass('people-style');
 	});
 
-	test('renders the children with appropraite text content', () => {
-		const { getByRole } = render(People(context.state));
+	test('people are passed into person', () => {
+		jest.spyOn(people, 'map').mockReturnValue(<div role="mock"/>);
 
-		const { name, age, gender, maritalStatus } = state;
+		const component = render(People(context)).getByRole('mock');
 
-		map({ name, age, gender, maritalStatus }, (value, key) => {
-			expect(getByRole(key)).toHaveTextContent(value);
-		});
+		expect(component).toBeInTheDocument();
+		expect(people.map).toHaveBeenCalledWith(Person);
 	});
 });

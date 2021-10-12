@@ -4,12 +4,12 @@ const actions = {
 	patchState: ({ data }) => data,
 
 	addPeople: (context) => ({
-		peoples: PeopleManager.addPeople(context),
+		people: PeopleManager.addPeople(context),
 	}),
 
-	resetInput: ({ seed, state: { peoples }}) => ({
+	resetInput: ({ seed, state: { people }}) => ({
 		...seed,
-		peoples,
+		people,
 	}),
 };
 

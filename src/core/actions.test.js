@@ -14,29 +14,29 @@ describe('actions', () => {
 
 	test('addPeople', () => {
 		const context = Symbol('context');
-		const peoples = Symbol('peoples');
+		const people = Symbol('people');
 
-		jest.spyOn(PeopleManager, 'addPeople').mockReturnValue(peoples);
+		jest.spyOn(PeopleManager, 'addPeople').mockReturnValue(people);
 
 		const result = addPeople(context);
 
-		expect(result).toEqual({ peoples });
+		expect(result).toEqual({ people });
 	});
 
 	test('resetInput', () => {
 		const seed = Symbol('seed');
-		const peoples = Symbol('peoples');
+		const people = Symbol('people');
 
 		const context = {
 			seed: seed,
 			state: {
-				peoples,
+				people,
 			},
 		};
 
 		const expected = {
 			...seed,
-			peoples,
+			people,
 		};
 
 		const result = resetInput(context);
