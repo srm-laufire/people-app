@@ -6,6 +6,11 @@ const actions = {
 	addPeople: (context) => ({
 		peoples: PeopleManager.addPeople(context),
 	}),
+
+	resetInput: ({ seed, state: { peoples }}) => ({
+		...seed,
+		peoples,
+	}),
 };
 
 export default actions;
