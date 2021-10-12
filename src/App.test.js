@@ -9,6 +9,7 @@ import App from './App';
 import config from './core/config';
 import * as MaritalStatus from './components/maritalStatus';
 import * as AddButton from './components/addButton';
+import * as Peoples from './components/peoples';
 
 describe('App', () => {
 	test('renders the component appropriately', () => {
@@ -17,6 +18,7 @@ describe('App', () => {
 		const gender = rndValue(config.genderOptions);
 		const maritalStatus = rndValue(config.maritalStatusOptions);
 		const addButton = rndString();
+		const peoples = rndString();
 
 		jest.spyOn(Name, 'default')
 			.mockImplementation(() => <div role={ name }/>);
@@ -28,6 +30,8 @@ describe('App', () => {
 			.mockImplementation(() => <div role={ maritalStatus }/>);
 		jest.spyOn(AddButton, 'default')
 			.mockImplementation(() => <div role={ addButton }/>);
+		jest.spyOn(Peoples, 'default')
+			.mockImplementation(() => <div role={ peoples }/>);
 
 		const { getByRole } = render(App(context));
 
@@ -49,5 +53,7 @@ describe('App', () => {
 		expect(MaritalStatus.default).toHaveBeenCalledWith(context);
 		expect(getByRole(addButton)).toBeInTheDocument();
 		expect(AddButton.default).toHaveBeenCalledWith(context);
+		expect(getByRole(peoples)).toBeInTheDocument();
+		expect(Peoples.default).toHaveBeenCalledWith(context);
 	});
 });
