@@ -1,9 +1,9 @@
 import { React } from 'react';
 
-const AddButton = ({ actions }) =>
+const AddButton = (context) =>
 	<button
 		role="addButton"
-		onClick={ () => actions.addUser() }
+		onClick={ () => context.actions.addUser(context) }
 	> +
 	</button>;
 

@@ -20,6 +20,6 @@ describe('AddButton', () => {
 
 		fireEvent.click(component);
 
-		expect(context.actions.addUser).toHaveBeenCalled();
+		expect(context.actions.addUser).toHaveBeenCalledWith(context);
 	});
 });

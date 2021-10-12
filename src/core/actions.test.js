@@ -1,3 +1,4 @@
+import UserManager from '../services/userManager';
 import actions from './actions';
 
 describe('actions', () => {
@@ -12,10 +13,13 @@ describe('actions', () => {
 	});
 
 	test('addUser', () => {
-		const expected = [];
+		const context = Symbol('context');
+		const users = Symbol('users');
 
-		const result = addUser();
+		jest.spyOn(UserManager, 'addUser').mockReturnValue(users);
 
-		expect(result).toEqual(expected);
+		const result = addUser(context);
+
+		expect(result).toEqual({ users });
 	});
 });
