@@ -21,7 +21,7 @@ describe('Person', () => {
 		const component = getByRole('person');
 
 		expect(component).toBeInTheDocument();
-		expect(component).toHaveClass('person-style');
+		expect(component).toHaveClass('person');
 	});
 
 	test('renders the children with appropraite text content', () => {

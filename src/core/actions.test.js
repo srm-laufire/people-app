@@ -24,18 +24,21 @@ describe('actions', () => {
 	});
 
 	test('resetInput', () => {
-		const seed = Symbol('seed');
+		const data = { seed: Symbol('seed') };
 		const people = Symbol('people');
 
+		const { seed } = data;
 		const context = {
-			seed: seed,
+			seed: {
+				seed,
+			},
 			state: {
 				people,
 			},
 		};
 
 		const expected = {
-			...seed,
+			...data,
 			people,
 		};
 
